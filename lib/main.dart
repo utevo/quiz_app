@@ -28,9 +28,7 @@ class _MyAppState extends State<MyApp> {
 
   _ansewerQuestion() {
     setState(() {
-      var lastQuestionIdx = questions.length - 1;
-      _questionIdx =
-          _questionIdx < lastQuestionIdx ? _questionIdx + 1 : _questionIdx;
+      _questionIdx = _questionIdx + 1;
     });
   }
 
@@ -43,14 +41,16 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: Text('Quiz App'),
         ),
-        body: Column(
-          children: [
-            Question(questions[_questionIdx]['questionText']),
-            ...(questions[_questionIdx]['answers'] as List<String>)
-                .map((answer) => Answer(answer, _ansewerQuestion))
-            // Answer(_ansewerQuestion),
-          ],
-        ),
+        body: _questionIdx < questions.length
+            ? Column(
+                children: [
+                  Question(questions[_questionIdx]['questionText']),
+                  ...(questions[_questionIdx]['answers'] as List<String>)
+                      .map((answer) => Answer(answer, _ansewerQuestion))
+                  // Answer(_ansewerQuestion),
+                ],
+              )
+            : Center(child: Text('Good job!')),
       ),
     );
   }
