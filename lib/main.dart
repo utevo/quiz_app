@@ -28,19 +28,16 @@ class _MyAppState extends State<MyApp> {
 
   _ansewerQuestion() {
     setState(() {
-      switch (_questionIdx) {
-        case (0):
-          _questionIdx = 1;
-          break;
-        case (1):
-          _questionIdx = 0;
-          break;
-      }
+      var lastQuestionIdx = questions.length - 1;
+      _questionIdx =
+          _questionIdx < lastQuestionIdx ? _questionIdx + 1 : _questionIdx;
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    int x = 3;
+    x = null;
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
