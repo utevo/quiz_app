@@ -8,8 +8,14 @@ void main() {
 }
 
 var questions = [
-  'Your favourite animal?',
-  'Your favourite food',
+  {
+    'questionText': 'What is your favourite food?',
+    'answers': ['pizza', 'sphaghetii', 'salomon', 'burger']
+  },
+  {
+    'questionText': 'What is your favourite animal?',
+    'answers': ['cat', 'dog', 'elephant', 'snake']
+  },
 ];
 
 class MyApp extends StatefulWidget {
@@ -42,10 +48,10 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: [
-            Question(questions[_questionIdx]),
-            Answer(_ansewerQuestion),
-            Answer(_ansewerQuestion),
-            Answer(_ansewerQuestion),
+            Question(questions[_questionIdx]['questionText']),
+            ...(questions[_questionIdx]['answers'] as List<String>)
+                .map((answer) => Answer(answer, _ansewerQuestion))
+            // Answer(_ansewerQuestion),
           ],
         ),
       ),
