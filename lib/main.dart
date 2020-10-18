@@ -15,11 +15,11 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var questionIdx = 0;
+  var _questionIdx = 0;
 
-  ansewerQuestion() {
+  _ansewerQuestion() {
     setState(() {
-      questionIdx = questionIdx + 1;
+      _questionIdx = _questionIdx + 1;
     });
   }
 
@@ -32,18 +32,18 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: [
-            Text(questions[questionIdx]),
+            Text(questions[_questionIdx]),
             RaisedButton(
               child: Text('Answer 1'),
-              onPressed: ansewerQuestion,
+              onPressed: _ansewerQuestion,
             ),
             RaisedButton(
               child: Text('Answer 2'),
-              onPressed: ansewerQuestion,
+              onPressed: _ansewerQuestion,
             ),
             RaisedButton(
               child: Text('Answer 3'),
-              onPressed: ansewerQuestion,
+              onPressed: _ansewerQuestion,
             ),
           ],
         ),
