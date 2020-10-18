@@ -4,7 +4,25 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+var questions = [
+  'Your favourite animal?',
+  'Your favourite food',
+];
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  var questionIdx = 0;
+
+  ansewerQuestion() {
+    setState(() {
+      questionIdx = questionIdx + 1;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -14,18 +32,18 @@ class MyApp extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Text('Question nr 1'),
+            Text(questions[questionIdx]),
             RaisedButton(
               child: Text('Answer 1'),
-              onPressed: null,
+              onPressed: ansewerQuestion,
             ),
             RaisedButton(
               child: Text('Answer 2'),
-              onPressed: null,
+              onPressed: ansewerQuestion,
             ),
             RaisedButton(
               child: Text('Answer 3'),
-              onPressed: null,
+              onPressed: ansewerQuestion,
             ),
           ],
         ),
