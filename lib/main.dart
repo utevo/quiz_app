@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './question.dart';
-import './answer.dart';
+import './quiz.dart';
 
 void main() {
   runApp(MyApp());
@@ -26,7 +25,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   var _questionIdx = 0;
 
-  _ansewerQuestion() {
+  _answerQuestion() {
     setState(() {
       _questionIdx = _questionIdx + 1;
     });
@@ -40,13 +39,10 @@ class _MyAppState extends State<MyApp> {
           title: Text('Quiz App'),
         ),
         body: _questionIdx < questions.length
-            ? Column(
-                children: [
-                  Question(questions[_questionIdx]['questionText']),
-                  ...(questions[_questionIdx]['answers'] as List<String>)
-                      .map((answer) => Answer(answer, _ansewerQuestion))
-                  // Answer(_ansewerQuestion),
-                ],
+            ? Quiz(
+                questions: questions,
+                questionIdx: _questionIdx,
+                answerQuestion: _answerQuestion,
               )
             : Center(child: Text('Good job!')),
       ),
