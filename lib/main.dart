@@ -34,8 +34,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    int x = 3;
-    x = null;
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
