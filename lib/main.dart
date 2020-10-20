@@ -9,11 +9,21 @@ void main() {
 var questions = [
   {
     'questionText': 'What is your favourite food?',
-    'answers': ['pizza', 'sphaghetii', 'salomon', 'burger']
+    'answers': [
+      {'text': 'pizza', 'score': 3},
+      {'text': 'sphaghetii', 'score': 4},
+      {'text': 'salomon', 'score': 5},
+      {'text': 'burger', 'score': 6},
+    ]
   },
   {
     'questionText': 'What is your favourite animal?',
-    'answers': ['cat', 'dog', 'elephant', 'snake']
+    'answers': [
+      {'text': 'cat', 'score': 2},
+      {'text': 'dog', 'score': 1},
+      {'text': 'elephant', 'score': 4},
+      {'text': 'snake', 'score': 4},
+    ]
   },
 ];
 
@@ -24,10 +34,12 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _questionIdx = 0;
+  var _finalScore = 0;
 
-  _answerQuestion() {
+  handleAnswer(final int score) {
     setState(() {
       _questionIdx = _questionIdx + 1;
+      _finalScore += score;
     });
   }
 
@@ -42,9 +54,9 @@ class _MyAppState extends State<MyApp> {
             ? Quiz(
                 questions: questions,
                 questionIdx: _questionIdx,
-                answerQuestion: _answerQuestion,
+                onAnswer: handleAnswer,
               )
-            : Center(child: Text('Good job!')),
+            : Center(child: Text('Good job! Score: $_finalScore')),
       ),
     );
   }

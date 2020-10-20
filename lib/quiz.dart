@@ -6,12 +6,12 @@ import './answer.dart';
 class Quiz extends StatelessWidget {
   final List<Map<String, Object>> questions;
   final int questionIdx;
-  final Function answerQuestion;
+  final Function onAnswer;
 
   Quiz({
     @required this.questions,
     @required this.questionIdx,
-    @required this.answerQuestion,
+    @required this.onAnswer,
   });
 
   @override
@@ -19,8 +19,11 @@ class Quiz extends StatelessWidget {
     return Column(
       children: [
         Question(questions[questionIdx]['questionText']),
-        ...(questions[questionIdx]['answers'] as List<String>)
-            .map((answer) => Answer(answer, answerQuestion))
+        ...(questions[questionIdx]['answers'] as List<Map<String, Object>>)
+            .map((answer) => Answer(
+                  answer['text'],
+                  () => onAnswer(answer['score']),
+                ))
         // Answer(_ansewerQuestion),
       ],
     );
